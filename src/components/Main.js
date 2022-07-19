@@ -1,5 +1,5 @@
 import React from "react";
-import { api } from "./Api";
+import { api } from "../utils/Api";
 import Card from "./Card";
 
 
@@ -60,10 +60,7 @@ function Main(props) {
             return (
               <li key={i} className="card">
                 <Card
-                  name={card.name}
-                  link={card.link}
-                  cardId={card._id}
-                  likes={card.likes}
+                  card={card}
                   userId={userId}
                   onCardClick = {props.onCardClick}
                 />

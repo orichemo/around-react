@@ -4,7 +4,7 @@ function PopupWithImage(props) {
   
   return (
    <div className={
-        props.selectedCard
+        props.isOpen
           ? `popup popup_type_photo popup_open`
           : `popup popup_type_photo`
       }>
@@ -15,8 +15,8 @@ function PopupWithImage(props) {
           aria-label="close"
           onClick={props.onClose}
         ></button>
-        <img className="popup__img" src={props.link} alt={props.name} />
-        <p className="popup__photo-title">{props.name}</p>
+        <img className="popup__img" src={props.selectedCard.link} alt={props.selectedCard.name} />
+        <p className="popup__photo-title">{props.selectedCard.name}</p>
       </div>
     </div> 
   );

@@ -1,28 +1,27 @@
 import React from "react";
-import { api } from "./Api";
+import { api } from "../utils/Api";
 import PopupWithForm from "./PopupWithForm.js";
 
 
 function Card(props) {
-  const [isLiked, setIsLiked] = React.useState(props.likes
+  const [isLiked, setIsLiked] = React.useState(props.card.likes
     .map((user) => user["_id"])
     .find((id) => id === props.userId));
-  const [like, setLike] = React.useState(props.likes.length);
+  const [like, setLike] = React.useState(props.card.likes.length);
   const [isDeleteCardPopupOpen , setIsDeleteCardPopupOpen] = React.useState(false);
 
   function handleLikeClick() {
-    console.log("like");
     isLiked
       ? api
-          .unLikeCard(props.cardId)
-          .then((res) => {
+          .unLikeCard(props.card._id)
+          .then(() => {
             setLike(like - 1);
             setIsLiked(!isLiked);
           })
           .catch(console.log)
       : api
-          .likeCard(props.cardId)
-          .then((res) => {
+          .likeCard(props.card._id)
+          .then(() => {
             setLike(like + 1);
             setIsLiked(!isLiked);
           })
@@ -34,8 +33,7 @@ function Card(props) {
   }
 
   function handleClick() {
-    console.log(props)
-    props.onCardClick(props);
+    props.onCardClick(props.card);
   }  
 
   return (
@@ -45,11 +43,11 @@ function Card(props) {
         aria-label="trash"
         className="card__trash-button"
         onClick={handleDeleteButton}
-        style = {props.userId !== props.cardId && {display: "none"}}
+        style = {props.userId !== props.card._id && {display: "none"}}
       ></button>
-      <img src={props.link} alt={props.name} className="card__photo" onClick={handleClick}/>
+      <img src={props.card.link} alt={props.card.name} className="card__photo" onClick={handleClick}/>
       <div className="card__info">
-        <h2 className="card__title">{props.name}</h2>
+        <h2 className="card__title">{props.card.name}</h2>
         <div className="card__like-info">
           <button
             type="button"
