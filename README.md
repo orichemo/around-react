@@ -4,12 +4,11 @@
 
 A collage of photos from around the U.S. by users
 
-### The work proces
+### Overview
 
-While working on this project I used the flex to position my
-elements according to the Figma model, I have found the flexbox efficient enough, therefore I chose not to use grid. During the process, I used Figma, TinyPNG, Perfect pixel, and validators to make sure I don't have any validation errors.
+This project was primary a refactor of the identical project I have built using vanilla JavaScript. You can see the previous version here:
 
-In addition, this is my first time working with JS, I noticed that we should not add the black color to the like icon but i wanted to give it a try, hope that i did it the right way (considerd the matiral we covered on JS).
+[https://github.com/orichemo/web_project_4]
 
 **Figma**
 

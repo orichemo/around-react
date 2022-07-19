@@ -72,7 +72,7 @@ function Card(props) {
       <PopupWithForm
         title="Are you sure?"
         name="delete"
-        text="Yes"
+        buttonText="Yes"
         mod="form__button-save_type_delete"
         isOpen={isDeleteCardPopupOpen}
       ></PopupWithForm>

@@ -28,8 +28,7 @@ function Main(props) {
           <img
             src={userAvatar}
             className="profile__avatar"
-            style={{ backgroundImage: `url(${userAvatar})` }}
-            alt="profile picture"
+            alt="profile avatar"
           />
           <span
             onClick={props.handleEditAvatarClick}
@@ -55,9 +54,9 @@ function Main(props) {
       </section>
       <section>
         <ul className="cards">
-          {cards.map((card, i) => {
+          {cards.map((card) => {
             return (
-              <li key={i} className="card">
+              <li key={card._id} className="card">
                 <Card
                   card={card}
                   userId={userId}

@@ -25,7 +25,6 @@ function PopupWithForm(props) {
         <form
           name={`${props.name}-form`}
           className="form popup__form"
-          noValidate
           onSubmit={submitHandler}
         >
           <fieldset className="form__fieldset">
