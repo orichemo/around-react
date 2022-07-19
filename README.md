@@ -6,7 +6,7 @@ A collage of photos from around the U.S. by users
 
 ### Overview
 
-This project was primary a refactor of the identical project I have built using vanilla JavaScript. You can see the previous version here:
+This project was primarily a refactor of the identical project I have built using vanilla JavaScript. You can see the previous version here:
 
 [https://github.com/orichemo/web_project_4]
 
