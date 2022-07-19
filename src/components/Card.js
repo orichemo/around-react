@@ -2,13 +2,15 @@ import React from "react";
 import { api } from "../utils/Api";
 import PopupWithForm from "./PopupWithForm.js";
 
-
 function Card(props) {
-  const [isLiked, setIsLiked] = React.useState(props.card.likes
-    .map((user) => user["_id"])
-    .find((id) => id === props.userId));
+  const [isLiked, setIsLiked] = React.useState(
+    props.card.likes
+      .map((user) => user["_id"])
+      .find((id) => id === props.userId)
+  );
   const [like, setLike] = React.useState(props.card.likes.length);
-  const [isDeleteCardPopupOpen , setIsDeleteCardPopupOpen] = React.useState(false);
+  const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] =
+    React.useState(false);
 
   function handleLikeClick() {
     isLiked
@@ -25,16 +27,16 @@ function Card(props) {
             setLike(like + 1);
             setIsLiked(!isLiked);
           })
-          .catch(console.log); 
+          .catch(console.log);
   }
 
   function handleDeleteButton() {
-    setIsDeleteCardPopupOpen(!isDeleteCardPopupOpen)
+    setIsDeleteCardPopupOpen(!isDeleteCardPopupOpen);
   }
 
   function handleClick() {
     props.onCardClick(props.card);
-  }  
+  }
 
   return (
     <>
@@ -43,9 +45,14 @@ function Card(props) {
         aria-label="trash"
         className="card__trash-button"
         onClick={handleDeleteButton}
-        style = {props.userId !== props.card._id && {display: "none"}}
+        style={props.userId !== props.card._id && { display: "none" }}
       ></button>
-      <img src={props.card.link} alt={props.card.name} className="card__photo" onClick={handleClick}/>
+      <img
+        src={props.card.link}
+        alt={props.card.name}
+        className="card__photo"
+        onClick={handleClick}
+      />
       <div className="card__info">
         <h2 className="card__title">{props.card.name}</h2>
         <div className="card__like-info">

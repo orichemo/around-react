@@ -2,7 +2,6 @@ import React from "react";
 import { api } from "../utils/Api";
 import Card from "./Card";
 
-
 function Main(props) {
   const [userName, setUserName] = React.useState("");
   const [userDescription, setUserDescription] = React.useState("");
@@ -11,15 +10,15 @@ function Main(props) {
   const [userId, setUserId] = React.useState("");
 
   React.useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
-      ([userData, cardsData]) => {
+    Promise.all([api.getUserInfo(), api.getInitialCards()])
+      .then(([userData, cardsData]) => {
         setUserName(userData.name);
         setUserDescription(userData.about);
         setUserAvatar(userData.avatar);
         setUserId(userData._id);
         setCards(cardsData);
-      }
-    ).catch(console.log);
+      })
+      .catch(console.log);
   }, []);
 
   return (
@@ -62,7 +61,7 @@ function Main(props) {
                 <Card
                   card={card}
                   userId={userId}
-                  onCardClick = {props.onCardClick}
+                  onCardClick={props.onCardClick}
                 />
               </li>
             );

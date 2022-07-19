@@ -34,7 +34,7 @@ function PopupWithForm(props) {
               type="submit"
               className={`form__button-save form__submit ${props.mod}`}
             >
-              {props.text}
+              {props.buttonText}
             </button>
           </fieldset>
         </form>

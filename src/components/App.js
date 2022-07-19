@@ -54,7 +54,7 @@ function App() {
       <PopupWithForm
         title="Edit profile"
         name="profile"
-        text="Save"
+        buttonText="Save"
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
       >
@@ -84,7 +84,7 @@ function App() {
       <PopupWithForm
         title="New place"
         name="cards"
-        text="Create"
+        buttonText="Create"
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
       >
@@ -112,7 +112,7 @@ function App() {
       <PopupWithForm
         title="Change profile picture"
         name="avatar"
-        text="Save"
+        buttonText="Save"
         mod="form__button-save_type_avatar"
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
