@@ -3,7 +3,7 @@ import Header from "./Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
 import PopupWithForm from "./PopupWithForm.js";
-import PopupWithImage from "./PopupWithImage";
+import ImagePopup from "./ImagePopup";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -127,7 +127,7 @@ function App() {
         />
         <span className="form__input-error avatar-error"></span>
       </PopupWithForm>
-      <PopupWithImage
+      <ImagePopup
         selectedCard={selectedCard}
         isOpen={isImagePopupOpen}
         onClose={closeAllPopups}
