@@ -3,7 +3,6 @@ import React from "react";
 function PopupWithForm(props) {
   const submitHandler = (e) => {
     e.preventDefault();
-    props.onClose();
   };
 
   return (

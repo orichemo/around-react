@@ -16,6 +16,8 @@ function App() {
     link: "",
   });
   const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
+  const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] =
+    React.useState(false);
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
@@ -127,6 +129,13 @@ function App() {
         />
         <span className="form__input-error avatar-error"></span>
       </PopupWithForm>
+      <PopupWithForm
+        title="Are you sure?"
+        name="delete"
+        buttonText="Yes"
+        mod="form__button-save_type_delete"
+        isOpen={isDeleteCardPopupOpen}
+      ></PopupWithForm>
       <ImagePopup
         selectedCard={selectedCard}
         isOpen={isImagePopupOpen}
