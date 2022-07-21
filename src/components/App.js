@@ -44,7 +44,7 @@ function App() {
   }
 
   return (
-    <div className="body">
+    <div>
       <Header />
       <Main
         handleEditProfileClick={handleEditProfileClick}
