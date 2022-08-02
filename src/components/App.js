@@ -7,7 +7,7 @@ import ImagePopup from "./ImagePopup.js";
 import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
 import AddPlacePopup from "./AddPlacePopup.js";
-import api from "../utils/api";
+import api from "../utils/api.js";
 import {
   CurrentUserContext,
   CurrentCradsContext,
