@@ -49,6 +49,11 @@ class Api {
     }).then(this._processResponse);
   }
 
+  changeLikeCardStatus(id, isLiked) {
+    console.log(isLiked)
+      return isLiked ? this.likeCard(id) : this.unLikeCard(id);
+  }
+
   likeCard(id) {
     return fetch(
       `https://around.nomoreparties.co/v1/cohort-3-en/cards/likes/${id}`,
@@ -83,10 +88,12 @@ class Api {
   }
 }
 
-export const api = new Api({
+ const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
   headers: {
     authorization: "3b82c4e5-0fac-48ec-9210-bfe6ee07c30f",
     "Content-Type": "application/json",
   },
 });
+
+export default api;

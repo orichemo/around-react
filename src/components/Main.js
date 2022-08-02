@@ -1,32 +1,16 @@
 import React from "react";
-import { api } from "../utils/Api";
 import Card from "./Card";
+import { CurrentUserContext, CurrentCradsContext } from "../contexts/CurrentUserContext";
 
 function Main(props) {
-  const [userName, setUserName] = React.useState("");
-  const [userDescription, setUserDescription] = React.useState("");
-  const [userAvatar, setUserAvatar] = React.useState("");
-  const [cards, setCards] = React.useState([]);
-  const [userId, setUserId] = React.useState("");
-
-  React.useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then(([userData, cardsData]) => {
-        setUserName(userData.name);
-        setUserDescription(userData.about);
-        setUserAvatar(userData.avatar);
-        setUserId(userData._id);
-        setCards(cardsData);
-      })
-      .catch(console.log);
-  }, []);
-
+  const currentUser = React.useContext(CurrentUserContext);
+  const cards = React.useContext(CurrentCradsContext);
   return (
     <main className="main">
       <section className="profile">
         <div className="profile__image">
           <img
-            src={userAvatar}
+            src={currentUser.avatar}
             className="profile__avatar"
             alt="profile avatar"
           />
@@ -36,14 +20,14 @@ function Main(props) {
           ></span>
         </div>
         <div className="profile__info">
-          <h1 className="profile__name">{userName}</h1>
+          <h1 className="profile__name">{currentUser.name}</h1>
           <button
             onClick={props.handleEditProfileClick}
             className="profile__edit-button"
             type="button"
             aria-label="edit"
           ></button>
-          <p className="profile__about-me">{userDescription}</p>
+          <p className="profile__about-me">{currentUser.about}</p>
         </div>
         <button
           onClick={props.handleAddPlaceClick}
@@ -57,11 +41,13 @@ function Main(props) {
           {cards.map((card) => {
             return (
               <li key={card._id} className="card">
-                <Card
-                  card={card}
-                  userId={userId}
-                  onCardClick={props.onCardClick}
-                />
+                <CurrentCradsContext.Provider value={card}>
+                  <Card
+                    onCardClick={props.onCardClick}
+                    onCardLike={props.handleCardLike}
+                    onCardDelete={props.handleCardDelete}
+                  />
+                </CurrentCradsContext.Provider>
               </li>
             );
           })}

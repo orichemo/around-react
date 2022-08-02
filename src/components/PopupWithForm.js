@@ -1,10 +1,6 @@
 import React from "react";
 
 function PopupWithForm(props) {
-  const submitHandler = (e) => {
-    e.preventDefault();
-  };
-
   return (
     <div
       className={
@@ -24,7 +20,7 @@ function PopupWithForm(props) {
         <form
           name={`${props.name}-form`}
           className="form popup__form"
-          onSubmit={submitHandler}
+          onSubmit={props.onSubmit}
         >
           <fieldset className="form__fieldset">
             {props.children}

@@ -75,6 +75,10 @@
   right: 15px;
 }
 
+.card__trash-button_hide {
+  display: none;
+}
+
 .card__trash-button:hover {
   cursor: pointer;
   opacity: 0.6;
