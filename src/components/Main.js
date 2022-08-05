@@ -45,7 +45,7 @@ function Main(props) {
                   <Card
                     onCardClick={props.onCardClick}
                     onCardLike={props.handleCardLike}
-                    onCardDelete={props.handleCardDelete}
+                    onCardDelete={props.handleTrashClick}
                   />
                 </CurrentCradsContext.Provider>
               </li>

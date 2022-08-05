@@ -1,5 +1,8 @@
 import React from "react";
-import { CurrentUserContext, CurrentCradsContext } from "../contexts/CurrentUserContext";
+import {
+  CurrentUserContext,
+  CurrentCradsContext,
+} from "../contexts/CurrentUserContext";
 
 function Card(props) {
   const card = React.useContext(CurrentCradsContext);
@@ -9,7 +12,7 @@ function Card(props) {
     isLiked && "card__like-button_active"
   }`;
   const isOwn = card.owner._id !== currentUser._id;
-  const cardTrashButtonMod =  `card__trash-button ${
+  const cardTrashButtonMod = `card__trash-button ${
     isOwn && "card__trash-button_hide"
   }`;
 

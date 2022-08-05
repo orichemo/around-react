@@ -2,11 +2,11 @@ import React from "react";
 import Header from "./Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
-import PopupWithForm from "./PopupWithForm.js";
 import ImagePopup from "./ImagePopup.js";
 import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
 import AddPlacePopup from "./AddPlacePopup.js";
+import RemoveCardPopup from "./RemoveCardPopup.js";
 import api from "../utils/api.js";
 import {
   CurrentUserContext,
@@ -19,10 +19,7 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState({
-    name: "",
-    link: "",
-  });
+  const [selectedCard, setSelectedCard] = React.useState({});
   const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
   const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] =
     React.useState(false);
@@ -56,9 +53,14 @@ function App() {
     setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
   }
 
+  function handleTrashButtonClick(card) {
+    setIsDeleteCardPopupOpen(!isAddPlacePopupOpen);
+    setSelectedCard(card);
+  }
+
   function handleCardClick(data) {
     setIsImagePopupOpen(true);
-    setSelectedCard({ name: data.name, link: data.link });
+    setSelectedCard(data);
   }
 
   function closeAllPopups() {
@@ -66,6 +68,7 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsImagePopupOpen(false);
+    setIsDeleteCardPopupOpen(false);
   }
 
   function handleUpdateUser({ name, about }) {
@@ -119,7 +122,7 @@ function App() {
             handleEditAvatarClick={handleEditAvatarClick}
             handleAddPlaceClick={handleAddPlaceClick}
             handleCardLike={handleCardLike}
-            handleCardDelete={handleCardDelete}
+            handleTrashClick={handleTrashButtonClick}
             onCardClick={handleCardClick}
           />
         </CurrentCradsContext.Provider>
@@ -139,14 +142,13 @@ function App() {
         onClose={closeAllPopups}
         onUpdateCard={handleUpdateCard}
       />
-      <Footer />
-      <PopupWithForm
-        title="Are you sure?"
-        name="delete"
-        buttonText="Yes"
-        mod="form__button-save_type_delete"
+      <RemoveCardPopup
         isOpen={isDeleteCardPopupOpen}
-      ></PopupWithForm>
+        onClose={closeAllPopups}
+        onConfirm={handleCardDelete}
+        selectedCard={selectedCard}
+      ></RemoveCardPopup>
+      <Footer />
       <ImagePopup
         selectedCard={selectedCard}
         isOpen={isImagePopupOpen}

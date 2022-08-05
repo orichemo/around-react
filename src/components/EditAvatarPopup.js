@@ -13,10 +13,6 @@ function EditAvatarPopup(props) {
     props.onClose();
   };
 
-  function handleInput() {
-    //esc and click?
-  }
-
   return (
     <PopupWithForm
       title="Change profile picture"
@@ -35,7 +31,6 @@ function EditAvatarPopup(props) {
         placeholder="profile picture link"
         required
         ref={avatarRef}
-        onChange={handleInput}
       />
       <span className="form__input-error avatar-error"></span>
     </PopupWithForm>
