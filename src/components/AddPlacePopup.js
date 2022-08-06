@@ -4,15 +4,18 @@ import PopupWithForm from "./PopupWithForm.js";
 function AddPlacePopup(props) {
   const [name, setName] = React.useState("");
   const [link, setLink] = React.useState("");
+
+  React.useEffect(() => {
+    setName("");
+    setLink("");
+  }, [props.isOpen]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     props.onUpdateCard({
       name: name,
       link: link,
     });
-    setName("");
-    setLink("");
-    props.onClose();
   };
   const handleChange = (e) => {
     e.target.name === "place-title"

@@ -1,34 +1,32 @@
 import React from "react";
 import {
   CurrentUserContext,
-  CurrentCradsContext,
 } from "../contexts/CurrentUserContext";
 
 function Card(props) {
-  const card = React.useContext(CurrentCradsContext);
   const currentUser = React.useContext(CurrentUserContext);
-  const isLiked = card.likes.some((user) => user._id === currentUser._id);
+  const isLiked = props.card.likes.some((user) => user._id === currentUser._id);
   const cardLikeButtonClassName = `card__like-button ${
     isLiked && "card__like-button_active"
   }`;
-  const isOwn = card.owner._id !== currentUser._id;
+  const isOwn = props.card.owner._id !== currentUser._id;
   const cardTrashButtonMod = `card__trash-button ${
     isOwn && "card__trash-button_hide"
   }`;
 
   function handleClick() {
-    props.onCardClick(card);
+    props.onCardClick(props.card);
   }
 
   function handleCardLike() {
-    props.onCardLike(card);
+    props.onCardLike(props.card);
   }
   function handleDeleteClick() {
-    props.onCardDelete(card);
+    props.onCardDelete(props.card);
   }
 
   return (
-    <>
+    <li key={props.card._id} className="card">
       <button
         type="button"
         aria-label="trash"
@@ -36,13 +34,13 @@ function Card(props) {
         onClick={handleDeleteClick}
       ></button>
       <img
-        src={card.link}
-        alt={card.name}
+        src={props.card.link}
+        alt={props.card.name}
         className="card__photo"
         onClick={handleClick}
       />
       <div className="card__info">
-        <h2 className="card__title">{card.name}</h2>
+        <h2 className="card__title">{props.card.name}</h2>
         <div className="card__like-info">
           <button
             type="button"
@@ -50,10 +48,10 @@ function Card(props) {
             aria-label="like"
             onClick={handleCardLike}
           ></button>
-          <span className="card__like-counter">{card.likes.length}</span>
+          <span className="card__like-counter">{props.card.likes.length}</span>
         </div>
       </div>
-    </>
+    </li>
   );
 }
 

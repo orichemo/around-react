@@ -43,7 +43,7 @@ class Api {
   }
 
   deleteCard(id) {
-    return fetch(`https://around.nomoreparties.co/v1/cohort-3-en/cards/${id}`, {
+    return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
     }).then(this._processResponse);
@@ -55,36 +55,27 @@ class Api {
   }
 
   likeCard(id) {
-    return fetch(
-      `https://around.nomoreparties.co/v1/cohort-3-en/cards/likes/${id}`,
-      {
-        method: "PUT",
-        headers: this._headers,
-      }
-    ).then(this._processResponse);
+    return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+      method: "PUT",
+      headers: this._headers,
+    }).then(this._processResponse);
   }
 
   unLikeCard(id) {
-    return fetch(
-      `https://around.nomoreparties.co/v1/cohort-3-en/cards/likes/${id}`,
-      {
-        method: "DELETE",
-        headers: this._headers,
-      }
-    ).then(this._processResponse);
+    return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this._processResponse);
   }
 
   changeProfilePicture(link) {
-    return fetch(
-      `https://around.nomoreparties.co/v1/cohort-3-en/users/me/avatar`,
-      {
-        method: "PATCH",
-        headers: this._headers,
-        body: JSON.stringify({
-          avatar: link,
-        }),
-      }
-    ).then(this._processResponse);
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: link,
+      }),
+    }).then(this._processResponse);
   }
 }
 

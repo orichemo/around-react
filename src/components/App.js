@@ -23,8 +23,9 @@ function App() {
   const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
   const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] =
     React.useState(false);
-  const [currentUser, setCurrentUser] = React.useState("");
+  const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
+
   React.useEffect(() => {
     api
       .getUserInfo()
@@ -39,6 +40,18 @@ function App() {
         setCards(cardsData);
       })
       .catch(console.log);
+  }, []);
+
+  React.useEffect(() => {
+    const closeByEscape = (e) => {
+      if (e.key === "Escape") {
+        closeAllPopups();
+      }
+    };
+
+    document.addEventListener("keydown", closeByEscape);
+
+    return () => document.removeEventListener("keydown", closeByEscape);
   }, []);
 
   function handleEditProfileClick() {
@@ -74,41 +87,56 @@ function App() {
   function handleUpdateUser({ name, about }) {
     api
       .patchUserProfile(name, about)
-      .then((user) => setCurrentUser(user))
+      .then((user) => {
+        setCurrentUser(user);
+        closeAllPopups();
+      })
       .catch(console.log);
   }
 
   function handleUpdateAvatar({ avatar }) {
     api
       .changeProfilePicture(avatar)
-      .then((user) => setCurrentUser(user))
+      .then((user) => {
+        setCurrentUser(user);
+        closeAllPopups();
+      })
       .catch(console.log);
   }
 
   function handleUpdateCard({ name, link }) {
     api
       .createCard({ name: name, link: link })
-      .then((newCard) => setCards([newCard, ...cards]))
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopups();
+      })
       .catch(console.log);
   }
 
   function handleCardLike(card) {
     console.log("get to main card like");
     const isLiked = card.likes.some((user) => user._id === currentUser._id);
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      setCards((state) =>
-        state.map((currentCard) =>
-          currentCard._id === card._id ? newCard : currentCard
-        )
-      );
-    });
+    api
+      .changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((currentCard) =>
+            currentCard._id === card._id ? newCard : currentCard
+          )
+        );
+      })
+      .catch(console.log);
     return card;
   }
 
   function handleCardDelete(card) {
     api
       .deleteCard(card._id)
-      .then(setCards(cards.filter((item) => item !== card)))
+      .then(() => {
+        setCards(cards.filter((item) => item !== card));
+        closeAllPopups();
+      })
       .catch(console.log);
   }
 

@@ -5,7 +5,6 @@ function RemoveCardPopup(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.onConfirm(props.selectedCard);
-    props.onClose();
   };
 
   return (
