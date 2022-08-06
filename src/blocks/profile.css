@@ -10,8 +10,9 @@
 
 .profile__avatar {
   max-width: 120px;
-  border-radius: 50%;
+  height: 120px;
   display: block;
+  border-radius: 50%;
   transition: opacity 1s ease-in-out;
 }
 

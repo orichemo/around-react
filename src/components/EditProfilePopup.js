@@ -18,7 +18,6 @@ function EditProfilePopup(props) {
       name,
       about: description,
     });
-    props.onClose();
   };
 
   const handleChange = (e) => {

@@ -26,7 +26,7 @@ function Card(props) {
   }
 
   return (
-    <li key={props.card._id} className="card">
+    <li className="card">
       <button
         type="button"
         aria-label="trash"
